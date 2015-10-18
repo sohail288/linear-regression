@@ -36,8 +36,16 @@ function intercept() {
 }
 
 
-function line_func(x) {
-    return slope()*x + intercept();
+function line_func() {
+    // closure function so intercept & slope are not recomputed all the time
+
+        function f(x) {
+            return slope_*x + intercept_;
+        }
+
+    var slope_ = slope();
+    var intercept_ = intercept();
+    return f;
 }
 
 function Coordinate(x,y) {
@@ -288,16 +296,40 @@ function drawRegLine(xMap, yMap) {
 
     // for some reason the line is offset by 50
     // so i hardcoded the translate
+
+    var f = line_func();
+    var tooltip_pos = d=>d;
+
     var line= chart.append("line")
       .attr("transform", "translate(0, -50)")
         .attr("x1", 0)
-        .attr("y1", height-line_func(0))
+        .attr("y1", height-f(0))
         .attr("x2", max_x)
-        .attr("y2", height-line_func(max_x))
+        .attr("y2", height-f(max_x))
         .attr("stroke-width", 2)
         .attr("stroke", "blue")
-        .attr("class", "reg-line");
-
+        .attr("class", "reg-line")
+      .on("mouseover", function(d) {
+            var tooltip = d3.select(".tooltip");
+            var x = d3.mouse(this)[0];
+            tooltip
+                .transition()
+                .duration(200)
+                .style("opacity", .9);
+            tooltip
+              .html("("+x+", "+f(x)+")")
+                .style("left", (d3.event.pageX +5)+"px")
+                .style("top", (d3.event.pageY +10)+"px")
+                .style("color", "grey");
+        })
+      .on("mouseout", function(d) {
+          var tooltip = d3.select(".tooltip");
+            tooltip
+                .transition()
+                .duration(500)
+                .style("opacity", 0)
+                .style("color", "black");
+        });
 }
 
 function clearRegLine() {
