@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html>
+
+<head lang="en">
+    <title>Bootstrap+D3+Jquery</title>
+    <meta charset="utf-8">    
+    <link href="bootstrap/css/bootstrap.min.css" type="text/css" 
+          rel="stylesheet">
+   <link href='https://fonts.googleapis.com/css?family=Quicksand:300,400' 
+          rel='stylesheet' type='text/css'> 
+    <link href="assets/css/main.css" type="text/css" rel="stylesheet">
+
+</head>
+
+
+<body>
+    <div class="container">
+        <header class="row page-header text-center">
+            <h1>A page with some d3, jquery and bootstrap.<br>
+                <small>Sohail Khan</small></h1>
+        </header>
+
+        <section class="row main-content">
+            <aside class="col-md-4">
+                <h3 class="hero"> This chart was made using d3.js and jquery.
+                I used several resources to learn how to make it, these are located in the footer
+                </h2>
+
+                <h4 class="hero">
+                To use the interactive chart you just need to click on the graph
+                at any point.  This action will create a new point element.   
+                Then, just use the input buttons to clear or draw a regression
+                line.  In addition you can clear the chart and start fresh
+                again.  
+                <br>
+                <br>
+                Note that this uses arrow functions in javascript. 
+                    Use new versions of chrome or firefox</b>
+                </h4>
+                <p class="hero">
+                Several things to do with this:
+                    <ul>
+                        <li>Let user dynamically change the scale</li>
+                        <li>Allow multiple regression lines to be shown
+                            to highlight differences in additional data</li>
+                        <li>Delete points!</li>
+                    </ul>
+                </p>
+                
+
+            </aside>
+            <div class="col-md-8">
+                <div class="chart"><!-- chart goes here --></div>
+
+                <div class="toolbar btn-group" role="group"
+                     aria-label="...">
+                    <button id="clear-chart"
+                            type="button" class="btn btn-default">
+                        Clear Chart 
+                    </button>
+            
+                    <button id="line-draw"
+                            type="button" class="btn btn-default">
+                        Draw Regression Line 
+                    </button>
+
+                    <button id="line-clear" 
+                            type="button" class="btn btn-default">
+                        Clear Regression Line 
+                    </button>
+                </div>
+            </div>
+
+        </section>
+
+        <footer class="row">
+        <div class="col-md-12">
+            <h3>Resources</h3>
+            <a href="http://bl.ocks.org/mbostock/929623">mbostock's build your own graph!</a> <br>
+            <a href="http://bl.ocks.org/weiglemc/6185069">weiglemc’s block #6185069</a><br>
+            <a href="https://www.safaribooksonline.com/blog/2014/02/17/building-responsible-visualizations-d3-js/">
+            Building Responsive Visualizations with D3.js</a>
+        </div>
+        </footer>
+
+
+        
+
+
+    </div>
+
+    
+    <script src="assets/js/jquery-2.1.4.min.js"></script>
+    <script src="d3/d3.min.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>
+

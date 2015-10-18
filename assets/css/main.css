@@ -1,0 +1,23 @@
+/**
+    My CSS File
+**/
+
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 300;
+}
+
+h1, h2 {
+    font-weight:400;
+}
+
+.cursor {
+  fill: none;
+  stroke: blue;
+  pointer-events: none;
+}
+
+.point {
+    stroke: black;
+}
