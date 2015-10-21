@@ -332,10 +332,45 @@ function drawRegLine(xMap, yMap) {
         });
 }
 
+
 function clearRegLine() {
     d3.select(".reg-line").remove();
+    d3.selectAll(".residual-line").remove();
 }
 
+/* this function draws the residuals
+   it only works when the regression line is present
+*/
+function drawResiduals() {
+    if ($(".reg-line").length == 0) {
+        drawRegLine();
+    }
+
+    var chart = d3.select(".chart").select("g");
+    var height = $("svg").height();
+    var width = $("svg").width();
+    var f = line_func();
+
+
+    // for reach data point select all the residual lines
+    chart.selectAll(".residual-line")
+    // bind the data array
+      .data(data_array)
+    .attr("y2", (d,i)=>height - f(d.x))
+    // enter to see if any data need to have residuals drawn
+    .enter().append("line") 
+      .attr("transform", "translate(0, -50)")
+    // draw the lines starting from data_y to func(x) at x=data.x
+    .attr("x1", (d,i)=>d.x)
+    .attr("x2", (d,i)=>d.x)
+    .attr("y1", (d,i)=>height - d.y)
+    .attr("y2", (d,i)=>height - f(d.x))
+    .attr("stroke-width", 2)
+    .attr("stroke", "red")
+    .attr("class", "residual-line");
+    
+    
+}
         
 
 $(document).ready(function () {
@@ -344,6 +379,8 @@ $(document).ready(function () {
     initChart();
     $(window).on('resize', updateChart);
 
+    
+    // bind the functions to the buttons
     $("#clear-chart").click(function() {
         clearChart();
         clearRegLine();
@@ -358,4 +395,10 @@ $(document).ready(function () {
     $("#line-clear").click(function() {
         clearRegLine();
     });
+
+    $("#residuals-draw").click(function() {
+        drawResiduals();
+    });
+
+    
 });

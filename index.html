@@ -23,16 +23,24 @@
 
         <section class="row main-content">
             <aside class="col-md-4">
-                <h3 class="hero"> This chart was made using d3.js and jquery.
+                <h4 class="hero"> This chart was made using d3.js and jquery.
                 I used several resources to learn how to make it, these are located in the footer
-                </h2>
+                </h4>
 
                 <h4 class="hero">
-                To use the interactive chart you just need to click on the graph
-                at any point.  This action will create a new point element.   
-                Then, just use the input buttons to clear or draw a regression
-                line.  In addition you can clear the chart and start fresh
-                again.  
+                <strong class="lead">How to use it:</strong><br>
+                    <ul>
+                        <li>click on any point on the graph. This creates a new
+                            point </li>
+                        <li>create more than one point to be able to draw a 
+                            regression line</li>
+                        <li>You can clear the chart using the appropriate
+                            buttons</li>
+                        <li>If you draw another point after drawing the 
+                            regression line, you will have to draw the line
+                            again. <br>This also applies to the residual lines
+                        </li> 
+                    </ul>
                 <br>
                 <br>
                 Note that this uses arrow functions in javascript. 
@@ -68,6 +76,10 @@
                     <button id="line-clear" 
                             type="button" class="btn btn-default">
                         Clear Regression Line 
+                    </button>
+                    <button id="residuals-draw"
+                            type="button" class="btn btn-default">
+                        draw residuals
                     </button>
                 </div>
             </div>
