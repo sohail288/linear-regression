@@ -356,6 +356,9 @@ function drawResiduals() {
     chart.selectAll(".residual-line")
     // bind the data array
       .data(data_array)
+      .transition()
+      .duration(500)
+      .ease("linear")
     .attr("y2", (d,i)=>height - f(d.x))
     // enter to see if any data need to have residuals drawn
     .enter().append("line") 
@@ -364,6 +367,10 @@ function drawResiduals() {
     .attr("x1", (d,i)=>d.x)
     .attr("x2", (d,i)=>d.x)
     .attr("y1", (d,i)=>height - d.y)
+    .attr("y2", (d,i)=>height - d.y)
+       .transition()
+        .duration(1000)
+        .ease("linear")
     .attr("y2", (d,i)=>height - f(d.x))
     .attr("stroke-width", 2)
     .attr("stroke", "red")
