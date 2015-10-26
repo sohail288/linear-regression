@@ -353,14 +353,21 @@ function drawResiduals() {
 
 
     // for reach data point select all the residual lines
-    chart.selectAll(".residual-line")
+    residual_lines = chart.selectAll(".residual-line");
+
+    
     // bind the data array
-      .data(data_array)
-      .transition()
-      .duration(500)
-      .ease("linear")
-    .attr("y2", (d,i)=>height - f(d.x))
+    residual_lines_bound = residual_lines
+      .data(data_array);
+
+    residual_lines_update = residual_lines_bound
+          .transition()
+          .duration(500)
+          .ease("linear")
+        .attr("y2", (d,i)=>height - f(d.x));
+
     // enter to see if any data need to have residuals drawn
+    residual_lines__enter = residual_lines_bound
     .enter().append("line") 
       .attr("transform", "translate(0, -50)")
     // draw the lines starting from data_y to func(x) at x=data.x
@@ -375,7 +382,6 @@ function drawResiduals() {
     .attr("stroke-width", 2)
     .attr("stroke", "red")
     .attr("class", "residual-line");
-    
     
 }
         
